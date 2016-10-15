@@ -2,4 +2,4 @@
 
 Random number guessing game using AngularJS
 
-![screenshot-guessthenumber](ss-guessthenumber.png)
+![screenshot-guessthenumber](screenshot.png)
