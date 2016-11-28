@@ -1,27 +1,84 @@
+
 <!DOCTYPE html>
 <html ng-app="GuessTheNumber">
 <head>
-	<title>Guess the Number</title>
+
+	<title>Guess the Number!</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>	
 	<script src="app.js"></script>
+	<style>
+	body {
+    background-image: url("dawn-nature-sunset-trees.jpg");
+    background-repeat: no-repeat;
+}
+</style>
 </head>
 <body>
-	<div class="container" ng-controller="GuessTheNumberCtrl">
-		<h2>Guess the Number!</h2>
+<div class="container" ng-controller="GuessTheNumberCtrl">
+<h2>
+<script language="JavaScript1.2">
+
+var message="Guess the Number!"
+var neonbasecolor="red"
+var neontextcolor="blue"
+var flashspeed=100  
+
+var n=0
+if (document.all||document.getElementById){
+document.write('<font color="'+neonbasecolor+'">')
+for (m=0;m<message.length;m++)
+document.write('<span id="neonlight'+m+'">'+message.charAt(m)+'</span>')
+document.write('</font>')
+}
+else
+document.write(message)
+
+function crossref(number){
+var crossobj=document.all? eval("document.all.neonlight"+number) : document.getElementById("neonlight"+number)
+return crossobj
+}
+
+function neon(){
+
+if (n==0){
+for (m=0;m<message.length;m++)
+
+crossref(m).style.color=neonbasecolor
+}
+
+crossref(n).style.color=neontextcolor
+
+if (n<message.length-1)
+n++
+else{
+n=0
+clearInterval(flashing)
+setTimeout("beginneon()",1500)
+return
+}
+}
+function beginneon(){
+if (document.all||document.getElementById)
+flashing=setInterval("neon()",flashspeed)
+}
+beginneon()
+</script>
+</h2>
 		<p class="well lead">Guess the computer generated random number between 1 and 1000.</p>
-		<label>Your Guess:</label> 
+		<center><label>Your Guess:</label> 
 		<input type="number" ng-model="guess" />
 		<button ng-click="verifyGuess()" class="btn btn-primary btn-sm">Verify</button>
-		<button ng-click="initializeGame()" class="btn btn-warning btn-sm">Retry</button>
+		<button ng-click="initializeGame()" class="btn btn-warning btn-sm">Retry</button></center>
 		<p>
-			<p ng-show="deviation<0" class="alert alert-warning">Your guess is higher.</p>
-			<p ng-show="deviation>0" class="alert alert-warning">Your guess is lower.</p>
-			<p ng-show="deviation===0" class="alert alert-success">Yes! That's it.</p>
+			<center><p ng-show="deviation<0" class="alert alert-warning">Your guess is higher.<IMG SRC="high.gif"></p></center>
+			<center><p ng-show="deviation>0" class="alert alert-warning">Your guess is lower.<IMG SRC="low.gif"></p></center>
+			<center><p ng-show="deviation===0" class="alert alert-success">Yes! That's it.<IMG SRC="yes.gif"></p></center>
 		</p>
-		<p class="text-info">No of guesses : <span class="badge">{{noOfTries}}</span><p>
-	</div>
+		<p class="text-info"><center>No of guesses : <span class="badge">{{noOfTries}}</span></center><p>
+
+</div>
 </body>
 </html>
